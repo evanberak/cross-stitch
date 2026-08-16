@@ -14,11 +14,32 @@ streamlit run app.py
 
 | File | Purpose |
 |---|---|
-| `app.py` | Streamlit UI |
+| `app.py` | Streamlit UI — simplified flow |
+| `app_all_controls.py` | Alternate UI with every control exposed |
 | `stitch_engine.py` | LAB color, quantization, floss matching, symbols (UI-free) |
 | `renderers.py` | Stitch simulation, symbol charts, PNG export |
 | `pdf_export.py` | Vector multi-page PDF |
 | `palette_starter.csv` | Thread palette data |
+
+## UI structure
+
+The default path is **upload -> three choices -> download PDF**. The three
+choices are Pattern size, Detail, and Fabric count — phrased as outcomes
+("Large", "Balanced") rather than as parameters ("34 colors", "0.75 smoothing"),
+because a first-time user has an opinion about how big their finished piece
+should be and no opinion at all about Gaussian smoothing radius.
+
+Everything else sits in **Advanced options**, tabbed into Size & color, Image,
+Crop, Threads, and Output. The presets feed the same engine parameters the
+advanced tabs expose, so nothing is unreachable — checking "Set exact color
+count" simply overrides the preset.
+
+Previews beyond the before/after, the full color key, thread replacement and
+PNG exports live in a second expander below the download button, so the primary
+action is never pushed below the fold.
+
+`app_all_controls.py` is the earlier flat-sidebar version, kept in case you want
+it for a "pro mode" toggle later.
 
 ## Design notes
 
